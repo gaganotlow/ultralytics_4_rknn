@@ -53,6 +53,16 @@ To request an Enterprise License please complete the form at [Ultralytics Licens
 
 ## <div align="center">Documentation</div>
 
+### export rknn
+```
+git apply change_code.patch （修改head的conv，在输出头的sigmoid前选择output出来，具体可以查阅patch文件），之后会得到一个export.py
+激活函数： ultralytics/ultralytics/nn/modules/conv.py 第25行 default_act = nn.SiLU() 修改为 default_act = nn.ReLU()
+
+python export.py (arg) (arg) ————根据自己的需求选择输出模型
+
+tip：在转relu前，模型训练我认为也要按照relu激活函数进行训练；不按照relu训练未测试过精度，我担心有影响所以一律按照relu训练；
+```
+
 See below for a quickstart installation and usage example, and see the [YOLOv8 Docs](https://docs.ultralytics.com) for full documentation on training, validation, prediction and deployment.
 
 <details open>
